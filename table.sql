@@ -1,0 +1,1 @@
+ALTER TABLE `owned_vehicles` ADD `impound` INT(1) NOT NULL DEFAULT '0' AFTER `type`, ADD `ngarage` VARCHAR(100) NULL DEFAULT NULL AFTER `impound`;
