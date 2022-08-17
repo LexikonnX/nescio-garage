@@ -112,7 +112,9 @@ local allGarages = {
     {name = "inno", pos = vector3(-137.3, -1397.06, 29.3), label = "Innocence Blvd", heading = 32.85, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 0, price = 10000, limit = 4},
     {name = "forumdr", pos = vector3(6.9, -1452.7, 30.01), label = "Forum Dr", heading = 169.773, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 0, price = 5000, limit = 1},
     {name = "grovest", pos = vector3(-69.5618, -1824.116, 26.45), label = "Grove St", heading = 223.136, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 1, price = 0, limit = 0},
-    {name = "grovest2", pos = vector3(115.96, -1948.52, 20.19), label = "Grove St", heading = 46.5, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 0, price = 5000, limit = 1}
+    {name = "grovest2", pos = vector3(115.96, -1948.52, 20.19), label = "Grove St", heading = 46.5, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 0, price = 5000, limit = 1},
+    {name = "integrity", pos = vector3(322.021, -683.92, 28.8), label = "Integrity Way", heading = 245.5, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 1, price = 0, limit = 0}
+    --{name = "littlebighorn1", pos = vector3(492.993, -932.54, 26.19), label = "Little Bighorn Ave", heading = 269.3, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 0, price = 10, limit = 3}
 }
 
 
@@ -228,7 +230,7 @@ CreateThread(function()
     end
 end)
 
-function OwnerCheck(gname, ogprice, oPublic, limited)
+function OwnerCheck(gname, ogprice, oPublic, limited, glabel)
     if oPublic == 1 then
         TriggerServerEvent("nescio-garage:park", GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId())), gname)
         ESX.ShowNotification(vehicle_is_parked)
@@ -244,7 +246,7 @@ function OwnerCheck(gname, ogprice, oPublic, limited)
         elseif p == 0 then
             ESX.ShowNotification(ThisIsNotYourGarage)
         elseif p == 2 then
-            OpenBuyMenu(gname, ogprice, limited, lbl)
+            OpenBuyMenu(gname, ogprice, limited, glabel)
         end
     end, gname)
     end
