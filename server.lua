@@ -17,6 +17,24 @@ ESX.RegisterServerCallback("nescio-garage:list", function(source, cb, garage)
     end)
 end)
 
+ESX.RegisterServerCallback("nescio-garage:isgaragemy", function(source, cb, garage)
+    local xPlayer = ESX.GetPlayerFromId(source)
+
+    MySQL.Async.fetchAll("SELECT * FROM nesciogarage garage = @garage", {
+        ["@garage"] = garage
+    }, function(myresult)
+        if myresult[1] ~= nil then
+            if myresult[1].identifier == xPlayer.identifier then
+                cb(1)
+            else
+                cb(0)
+            end
+        else
+            cb(2)
+        end
+    end)
+end)
+
 ESX.RegisterServerCallback("nescio-garage:buy", function(source, cb, garage, price)
     local xPlayer = ESX.GetPlayerFromId(source)
     if xPlayer.getMoney() >= price then
@@ -108,6 +126,7 @@ end)
 RegisterServerEvent("nescio-garage:parkout")
 AddEventHandler("nescio-garage:parkout", function(plate)
     local plt = plate:upper()
+    plt = plt:gsub(" ","")
     MySQL.Async.execute("UPDATE owned_vehicles SET impound = 0, ngarage = null WHERE plate = @plate", {
         ["@plate"] = plt
     })
@@ -116,6 +135,7 @@ end)
 RegisterServerEvent("nescio-garage:park")
 AddEventHandler("nescio-garage:park", function(plate, garage)
     local plt = plate:upper()
+    plt = plt:gsub(" ","")
     MySQL.Async.execute("UPDATE owned_vehicles SET impound = 3, ngarage = @garage WHERE plate = @plate", {
         ["@plate"] = plt,
         ["@garage"] = garage

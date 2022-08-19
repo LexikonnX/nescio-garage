@@ -19,6 +19,7 @@
 -- Texts
 local cars_in_garage = "Garáž"
 local GarageBlipText = "Garáž"
+local MyGarageBlipText = "Moje garáž"
 local park_here = "Zaparkovat vozidlo do garáže"
 local access_denied = "Sem ~r~nemáš prístup"
 local vehicle_is_parked = "Vozidlo je ~g~zaparkováno~w~!"
@@ -41,6 +42,7 @@ local GarageIsLocked = "Garáž je ~y~zamknutá"
 local GarageIsUnlocked = "Garáž je ~y~odemknutá"
 
 local blipcolor = 44 -- https://docs.fivem.net/docs/game-references/blips/#blip-colors
+local myblipcolor = 2 -- https://docs.fivem.net/docs/game-references/blips/#blip-colors
 local blipsprite = 326 -- https://docs.fivem.net/docs/game-references/blips/#blips
 
 -- All garages:
@@ -113,10 +115,27 @@ local allGarages = {
     {name = "forumdr", pos = vector3(6.9, -1452.7, 30.01), label = "Forum Dr", heading = 169.773, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 0, price = 5000, limit = 1},
     {name = "grovest", pos = vector3(-69.5618, -1824.116, 26.45), label = "Grove St", heading = 223.136, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 1, price = 0, limit = 0},
     {name = "grovest2", pos = vector3(115.96, -1948.52, 20.19), label = "Grove St", heading = 46.5, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 0, price = 5000, limit = 1},
-    {name = "integrity", pos = vector3(322.021, -683.92, 28.8), label = "Integrity Way", heading = 245.5, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 1, price = 0, limit = 0}
-    --{name = "littlebighorn1", pos = vector3(492.993, -932.54, 26.19), label = "Little Bighorn Ave", heading = 269.3, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 0, price = 10, limit = 3}
+    {name = "integrity", pos = vector3(322.021, -683.92, 28.8), label = "Integrity Way", heading = 245.5, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 1, price = 0, limit = 0},
+    {name = "littlebighorn1", pos = vector3(492.993, -932.54, 26.19), label = "Little Bighorn Ave", heading = 269.3, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 0, price = 10000, limit = 3},
+    {name = "buenvinoro", pos = vector3(-2593.69, 1930.31, 166.62), label = "Buen Vino Rd", heading = 308.78, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 0, price = 50000, limit = 20},
+    {name = "buenvinoro1", pos = vector3(-2598.84, 1922.18, 172.69), label = "Buen Vino Rd", heading = 98.53, job = "", marker = 34, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 0, price = 80000, limit = 4},
+    {name = "banhamcanyondr", pos = vector3(-2785.911, 1432.29, 100.504), label = "Banham Canyon Dr", heading = 233.59, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 0, price = 30000, limit = 6},
+    {name = "madwayne", pos = vector3(-1297.76, 456.75, 96.98), label = "Mad Wayne Thunder Dr", heading = 343.9, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 0, price = 25000, limit = 6},
+    {name = "eclipse", pos = vector3(-791.89, 332.59, 85.7), label = "Eclipse Towers", heading = 175.32, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = false, public = 1, price = 0, limit = 0},
+    {name = "eclipse", pos = vector3(-800.85, 332.45, 85.70), label = "Eclipse Towers", heading = 187.47, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 1, price = 0, limit = 0},
+    {name = "tinsel", pos = vector3(-620.34, 53.17, 43.24), label = "Eclipse Towers", heading = 70.71, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = false, public = 1, price = 0, limit = 0},
+    {name = "tinsel", pos = vector3(-621.91, 59.31, 43.24), label = "Eclipse Towers", heading = 104.48, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 1, price = 0, limit = 0},
+    {name = "hillcrestave2862", pos = vector3(-684.14, 603.4, 143.17), label = "Hillcrest Ave 2862", heading = 42.48, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = false, public = 0, price = 50000, limit = 8},
+    {name = "hillcrestave2868", pos = vector3(-753.23, 628.8, 142.06), label = "Hillcrest Ave 2868", heading = 289.48, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = false, public = 0, price = 50000, limit = 8},
+    {name = "hillcrestave2874", pos = vector3(-863.96, 699.3, 148.54), label = "Hillcrest Ave 2874", heading = 326.9, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = false, public = 0, price = 50000, limit = 8},
+    {name = "wildoastdr3655", pos = vector3(-188.98, 502.2, 134.05), label = "Wild Oast Dr 3655", heading = 12.86, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = false, public = 0, price = 40000, limit = 6},
+    {name = "whispymounddr3677", pos = vector3(131.67, 568.42, 183.08), label = "Whispymound Dr 3677", heading = 1.19, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = false, public = 0, price = 21000, limit = 4},
+    {name = "northconkerave2044", pos = vector3(353.57, 436.84, 146.35), label = "North Conker Ave 2044", heading = 289.43, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = false, public = 0, price = 21000, limit = 6},
+    {name = "northconkerave2046", pos = vector3(391.97, 430.49, 143.05), label = "North Conker Ave 2046", heading = 348.73, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = false, public = 0, price = 21000, limit = 6},
+    {name = "powerst1162", pos = vector3(282.63, -147.52, 64.55), label = "Power St 1162", heading = 348.73, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = false, public = 0, price = 12000, limit = 4},
+    {name = "integrityway", pos = vector3(-37.22, -617.54, 34.66), label = "Integrity Way", heading = 188.73, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 1, price = 0, limit = 0},
+    {name = "weazelplaza", pos = vector3(-827.05, -395.20, 30.90), label = "Weazel Plaza", heading = 188.73, job = "", marker = 36, showMarker = true, color = {r = 0, g = 255, b = 255}, blip = true, public = 1, price = 0, limit = 0}
 }
-
 
 
 
@@ -202,10 +221,12 @@ CreateThread(function()
                         if IsControlJustReleased(0, 38) then
                             if allGarages[i].job ~= "" then
                                 if PlayerData.job.name == allGarages[i].job then
+                                    DoScreenFadeOut(500)
                                     TriggerServerEvent("nescio-garage:park", GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId())), allGarages[i].name)
                                     ESX.ShowNotification(vehicle_is_parked)
-                                    Citizen.Wait(100)
+                                    Citizen.Wait(1000)
                                     DeleteVehicle(GetVehiclePedIsIn(PlayerPedId()))
+                                    DoScreenFadeIn(500)
                                 else
                                     ESX.ShowNotification(access_denied)
                                 end
@@ -232,17 +253,21 @@ end)
 
 function OwnerCheck(gname, ogprice, oPublic, limited, glabel)
     if oPublic == 1 then
+        DoScreenFadeOut(500)
         TriggerServerEvent("nescio-garage:park", GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId())), gname)
         ESX.ShowNotification(vehicle_is_parked)
-        Citizen.Wait(100)
+        Citizen.Wait(1000)
         DeleteVehicle(GetVehiclePedIsIn(PlayerPedId()))
+        DoScreenFadeIn(500)
     elseif oPublic == 0 then
         ESX.TriggerServerCallback("nescio-garage:owner", function(p)
         if p == 1 then
+            DoScreenFadeOut(500)
             TriggerServerEvent("nescio-garage:park", GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId())), gname)
             ESX.ShowNotification(vehicle_is_parked)
-            Citizen.Wait(100)
+            Citizen.Wait(1000)
             DeleteVehicle(GetVehiclePedIsIn(PlayerPedId()))
+            DoScreenFadeIn(500)
         elseif p == 0 then
             ESX.ShowNotification(ThisIsNotYourGarage)
         elseif p == 2 then
@@ -367,11 +392,13 @@ function OpenVehicleInfoDisplay(info, pos, head)
 end
 
 function SpawnSelVeh(vehicle, spawnPoint, he)
+    DoScreenFadeOut(500)
+    Citizen.Wait(1000)
     ESX.Game.SpawnVehicle(vehicle.vehicle.model, vector3(spawnPoint.x, spawnPoint.y, spawnPoint.z), he, function(car)
         ESX.Game.SetVehicleProperties(car, vehicle.vehicle)
         TaskWarpPedIntoVehicle(PlayerPedId(), car, -1)
-        Citizen.Wait(10)
-        TriggerServerEvent("nescio-garage:parkout", GetVehicleNumberPlateText(GetVehiclePedIsIn(PlayerPedId())))
+        TriggerServerEvent("nescio-garage:parkout", vehicle.vehicle.plate)
         ESX.UI.Menu.CloseAll()
+        DoScreenFadeIn(500)
     end)
 end
