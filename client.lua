@@ -306,11 +306,6 @@ end
 function OpenGarage(garageName, garagePos, h, garageLabel, garagePrice, public)
     local IsGarageLocked = 1
     local elements = {}
-    ESX.TriggerServerCallback("nescio-garage:islocked", function(IsGarageLocked1)
-        if IsGarageLocked1 == false then
-            IsGarageLocked = 0
-        end
-    end, garageName)
     ESX.TriggerServerCallback("nescio-garage:list", function(vehList)
         for k,v in pairs(vehList) do
             local vehHash = v.vehicle.model
